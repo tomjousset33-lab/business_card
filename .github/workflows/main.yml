@@ -18,6 +18,7 @@ jobs:
       uses: xu-cheng/latex-action@4.1.0
       with:
         root_file: card.tex
+        compiler: xelatex
 
     - name: create githubRelease
       uses: softprops/action-gh-release@v3
