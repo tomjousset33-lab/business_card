@@ -1,2 +1,24 @@
-- name: GitHub Action for LaTeX
-  uses: xu-cheng/latex-action@4.1.0
+- name: Build and release business card
+  on:
+    push:
+      tags:
+        - '*'
+  permissions:
+    contents: write
+
+  jobs:
+    build:
+      runs-on: ubuntu-latest
+      steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Compile LaTeX document
+        uses: xu-cheng/latex-action@4.1.0
+        with:
+          root_file: card.tex
+
+      - name: create githubRelease
+        uses: softprops/action-gh-release@v3
+        with:
+          files: card.pdf
